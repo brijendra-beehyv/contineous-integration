@@ -1,0 +1,15 @@
+name: Deploy metrics app
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ./metrics_app/
+
+jobs:
+  call-docker-build:
+    uses: ./.github/workflows/build-n-push.yaml
+    with:
+      image-name: ${{ github.repository }}/my-app
+      dockerfile-path: "./src/api-service"
