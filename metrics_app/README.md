@@ -43,3 +43,5 @@ scrape_configs:
 | `k8s_node_memory_bytes` | `node` | Node memory usage in bytes |
 | `k8s_pod_cpu_cores` | `namespace`, `pod` | Pod CPU usage in cores |
 | `k8s_pod_memory_bytes` | `namespace`, `pod` | Pod memory usage in bytes |
+
+*Version*: 1

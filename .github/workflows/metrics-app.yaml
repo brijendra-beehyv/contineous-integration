@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - ./metrics_app/
+      - metrics_app/**
 
 jobs:
   call-docker-build:
