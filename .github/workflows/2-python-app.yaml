@@ -1,0 +1,16 @@
+name: Deploy Python backend
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - python_app/**
+
+jobs:
+  call-docker-build:
+    uses: ./.github/workflows/0-build-n-push.yaml
+    with:
+      image-name: tmp-python-app
+      dockerfile-path: python_app/
+    secrets: inherit

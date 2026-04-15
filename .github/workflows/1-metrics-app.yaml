@@ -9,7 +9,7 @@ on:
 
 jobs:
   call-docker-build:
-    uses: ./.github/workflows/build-n-push.yaml
+    uses: ./.github/workflows/0-build-n-push.yaml
     with:
       image-name: tmp-metrics-app
       dockerfile-path: metrics_app/
