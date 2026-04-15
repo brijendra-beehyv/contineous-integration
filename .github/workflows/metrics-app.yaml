@@ -11,6 +11,6 @@ jobs:
   call-docker-build:
     uses: ./.github/workflows/build-n-push.yaml
     with:
-      image-name: ${{ github.repository }}/my-app
-      dockerfile-path: "./src/api-service"
+      image-name: tmp-metrics-app
+      dockerfile-path: metrics_app/
     secrets: inherit
