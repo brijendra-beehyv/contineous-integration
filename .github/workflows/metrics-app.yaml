@@ -13,3 +13,4 @@ jobs:
     with:
       image-name: ${{ github.repository }}/my-app
       dockerfile-path: "./src/api-service"
+    secrets: inherit
