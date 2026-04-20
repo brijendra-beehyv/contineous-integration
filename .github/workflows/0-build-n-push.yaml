@@ -54,7 +54,7 @@ jobs:
           push: true
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
           # This pulls all the tags generated in the 'meta' step above
-          
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
