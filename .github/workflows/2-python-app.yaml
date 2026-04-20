@@ -6,8 +6,8 @@ on:
     tags: [ "v*.*.*" ]
     paths:
       - python_app/**
-      - .github/2-python-app.yaml
-      - .github/0-build-n-push.yaml
+      - .github/workflows/2-python-app.yaml
+      - .github/workflows/0-build-n-push.yaml
 
 jobs:
   call-docker-build:

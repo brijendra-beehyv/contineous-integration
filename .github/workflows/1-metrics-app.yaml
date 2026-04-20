@@ -6,8 +6,8 @@ on:
     tags: [ "v*.*.*" ]
     paths:
       - metrics_app/**
-      - .github/1-metrics-app.yaml
-      - .github/0-build-n-push.yaml
+      - .github/workflows/1-metrics-app.yaml
+      - .github/workflows/0-build-n-push.yaml
 
 jobs:
   call-docker-build:
