@@ -20,5 +20,5 @@ jobs:
   hola:
     runs-on: ubuntu-latest
     steps:
-      - name: gg
+      - name: check kubectl
         run: kubectl --help
