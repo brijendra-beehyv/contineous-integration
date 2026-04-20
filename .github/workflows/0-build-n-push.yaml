@@ -21,8 +21,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # Mandatory for caching
-      - name: Set up Docker Buildx
+      - name: Set up Docker Buildx for caching
         uses: docker/setup-buildx-action@v3
 
       - name: Login to docker
@@ -31,6 +30,22 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       
+      - name: Extract Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: my-docker-hub-user/my-app
+          # This section defines the tagging logic per environment
+          tags: |
+            # 1. Dev/Staging: Tag with the branch name (e.g., 'develop')
+            type=ref,event=branch
+            # 2. Integration: Tag with the short git SHA (e.g., 'sha-7b12f34')
+            type=sha
+            # 3. Production: Tag with SemVer if a git tag is pushed (e.g., '1.2.0')
+            type=semver,pattern={{version}}
+            # 4. Global: Update 'latest' only on main branch pushes
+            type=edge,branch=main
+      
       - name: Build and push image with 
         uses: docker/build-push-action@v5
         with:
@@ -38,6 +53,6 @@ jobs:
           push: true
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          tags: |
-            docker.io/${{ secrets.DOCKER_USERNAME }}/${{ inputs.image-name }}:latest
-            docker.io/${{ secrets.DOCKER_USERNAME }}/${{ inputs.image-name }}:${{ github.sha }}
+          # This pulls all the tags generated in the 'meta' step above
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
