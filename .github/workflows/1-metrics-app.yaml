@@ -16,3 +16,9 @@ jobs:
       image-name: tmp-metrics-app
       dockerfile-dir: metrics_app/
     secrets: inherit
+  
+  hola:
+    runs-on: ubuntu-latest
+    steps:
+      - name: gg
+        run: kubectl --version
