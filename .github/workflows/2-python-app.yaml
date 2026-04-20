@@ -2,10 +2,12 @@ name: Deploy Python backend
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main", "qa", "dev" ]
+    tags: [ "v*.*.*" ]
     paths:
       - python_app/**
+      - .github/2-python-app.yaml
+      - .github/0-build-n-push.yaml
 
 jobs:
   call-docker-build:
