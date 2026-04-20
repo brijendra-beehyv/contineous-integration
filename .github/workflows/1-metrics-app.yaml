@@ -12,5 +12,5 @@ jobs:
     uses: ./.github/workflows/0-build-n-push.yaml
     with:
       image-name: tmp-metrics-app
-      dockerfile-path: metrics_app/
+      dockerfile-dir: metrics_app/
     secrets: inherit

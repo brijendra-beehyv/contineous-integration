@@ -7,7 +7,7 @@ on:
         description: 'Name of the image'
         type: string
         required: true
-      dockerfile-path:
+      dockerfile-dir:
         description: 'Path to Dockerfile'
         type: string
         required: true
@@ -34,7 +34,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: my-docker-hub-user/my-app
+          images: docker.io/${{ secrets.DOCKER_USERNAME }}/${{ inputs.image-name }}
           # This section defines the tagging logic per environment
           tags: |
             # 1. Dev/Staging: Tag with the branch name (e.g., 'develop')
@@ -54,5 +54,6 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           # This pulls all the tags generated in the 'meta' step above
+          
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

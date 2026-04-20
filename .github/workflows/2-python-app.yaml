@@ -12,5 +12,5 @@ jobs:
     uses: ./.github/workflows/0-build-n-push.yaml
     with:
       image-name: tmp-python-app
-      dockerfile-path: python_app/
+      dockerfile-dir: python_app/
     secrets: inherit
