@@ -1,0 +1,14 @@
+name: Just o play around
+
+on:
+  workflow_dispatch:
+
+jobs:
+  first:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: terraform version
+      - run: echo "db_password=abcd1234" >> $GITHUB_ENV
+      - run: echo $db_password
+      - run: echo ${{ env.db_password }}
