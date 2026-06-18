@@ -10,4 +10,3 @@ jobs:
     steps:
       - run: echo "db_password=abcd1234" >> $GITHUB_ENV
       - run: echo $db_password
-      - run: echo ${{ env.db_password }}
