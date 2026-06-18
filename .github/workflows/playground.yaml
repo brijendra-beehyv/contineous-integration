@@ -8,5 +8,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - run: echo "db_password=abcd1234" >> $GITHUB_ENV
-      - run: echo $db_password
+      - name: Some step
+        run: |
+          db_password="abcd1234"
+          echo "::add-mask::$db_password"
+          echo "db_password=$db_password" >> $GITHUB_ENV
+
+      - name: A different step ${{ env.db_password }}
+        run: echo $db_password
