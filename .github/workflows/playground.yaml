@@ -2,9 +2,15 @@ name: Just o play around
 
 on:
   workflow_dispatch:
+    inputs:
+      run:
+        type: boolean
+        description: "Tick"
+        default: false
 
 jobs:
   first:
+    if: ${{ inputs.run }}
     runs-on: ubuntu-latest
 
     steps:
@@ -16,3 +22,11 @@ jobs:
 
       - name: A different step ${{ env.db_password }}
         run: echo $db_password
+
+  second:
+    needs: first
+    if: ${{ !cancelled() && !failure() }}
+    
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "${{ inputs.run == 'true' }} ${{ inputs.run == 'false' }}"
