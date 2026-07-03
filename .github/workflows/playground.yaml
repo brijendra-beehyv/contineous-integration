@@ -10,7 +10,7 @@ on:
 
 jobs:
   first:
-    if: ${{ inputs.run }}
+    if: ${{ github.event.inputs.run }}
     runs-on: ubuntu-latest
 
     steps:
